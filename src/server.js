@@ -1,14 +1,14 @@
-const morgan = require('morgan')
-const express = require('express')
-const cors = require('cors')
+const morgan = require('morgan');
+const express = require('express');
+const cors = require('cors');
 
-const app = express()
+const app = express();
 
-app.use(morgan('dev'))
-app.use(express.json())
+app.use(morgan('dev'));
+app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.json('Home page Normal REST API')
+  res.json('Home page Normal REST API');
 })
 
 app.use((req, res, next) => {
@@ -16,5 +16,7 @@ app.use((req, res, next) => {
     message: "No encontrado"
   })
 })
-app.listen(3010)
-console.log(`Listening on PORT: ${3010}`)
+
+const port = process.env.PORT || 9001;
+app.listen(port)
+console.log(`Listening on PORT: ${port}`);
