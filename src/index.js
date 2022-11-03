@@ -10,6 +10,14 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
+const corsOptions = {
+  origin: true,
+  credentials: true
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.get('/', (req, res) => {
   res.json('Home page Normal REST API');
 });
