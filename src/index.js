@@ -2,6 +2,8 @@ const morgan = require('morgan');
 const express = require('express');
 const cors = require('cors');
 
+const config  = require('./config.js')
+
 const app = express();
 
 app.use(morgan('dev'));
@@ -17,6 +19,8 @@ app.use((req, res, next) => {
   })
 })
 
-const port = process.env.PORT || 9001;
+porti = config.puerto
+
+const port = process.env.PORT || porti;
 app.listen(port)
-console.log(`Listening on PORT: ${port}`);
+console.log(`Listening on PORT: ${porti}`);
