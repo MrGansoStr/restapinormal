@@ -2,7 +2,8 @@ const morgan = require('morgan');
 const express = require('express');
 const cors = require('cors');
 
-const config  = require('./config.js')
+const connectDB = require('./db.js');
+const config  = require('./config.js');
 
 const app = express();
 
@@ -11,13 +12,22 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json('Home page Normal REST API');
-})
+});
+
+app.get('/cosas', async (req, res) => {
+  const connection = await connectDB();
+  const [ result ] = await connection.query('SELECT * FROM users');
+  //const res1 = JSON.parse(result[0][0])
+  //console.log(res1)
+  res.json(result);
+  console.log(result.length);
+});
 
 app.use((req, res, next) => {
   res.status(404).json({
     message: "No encontrado"
   })
-})
+});
 
 porti = config.puerto
 
