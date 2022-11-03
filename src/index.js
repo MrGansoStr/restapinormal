@@ -14,11 +14,9 @@ app.get('/', (req, res) => {
   res.json('Home page Normal REST API');
 });
 
-app.get('/cosas', async (req, res) => {
+app.get('/users', async (req, res) => {
   const connection = await connectDB();
   const [ result ] = await connection.query('SELECT * FROM users');
-  //const res1 = JSON.parse(result[0][0])
-  //console.log(res1)
   res.json(result);
   console.log(result.length);
 });
