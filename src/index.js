@@ -5,6 +5,8 @@ const cors = require('cors');
 const connectDB = require('./db.js');
 const config  = require('./config.js');
 
+const logIn = require('./controllers/logIn.js');
+
 const app = express();
 
 app.use(morgan('dev'));
@@ -26,8 +28,10 @@ app.get('/users', async (req, res) => {
   const connection = await connectDB();
   const [ result ] = await connection.query('SELECT * FROM users');
   res.json(result);
-  console.log(result.length);
+  //console.log(result.length);
 });
+
+app.post('/login', logIn);
 
 app.use((req, res, next) => {
   res.status(404).json({
