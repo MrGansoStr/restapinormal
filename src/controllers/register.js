@@ -6,7 +6,7 @@ const Register = async (req, res) => {
     const connection = await connectDB();
     let [ result ] = await connection.query(`SELECT username FROM users WHERE username = '${user.username}'`);
     if(result.length > 0) {
-      return res.status(401).send("User Already Exists");
+      return res.status(422).send({message: "Usuario ya en uso"});
     }
     else {
       let [ newresult ] = await connection.query(`INSERT INTO users (username, password, email) 
