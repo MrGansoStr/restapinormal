@@ -13,11 +13,11 @@ const Register = async (req, res) => {
       VALUES ('${user.username}', '${user.password}', '${user.email}')`);
       //console.log(newresult);
       //res.json(newresult);
-      return res.status(200).send("Register Successfully").json();
+      return res.status(200).send({message: "Register Successfully"});
     }
   } catch (error) {
     console.log(error);
-    res.status(400).send("Algo paso Intentelo de nuevo mas tarde");
+    res.status(400).send({message: "Algo paso Intentelo de nuevo mas tarde"});
   }
 };
 
