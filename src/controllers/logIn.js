@@ -29,7 +29,7 @@ const logIn = async (req, res) => {
             res.status(200).send({"message": "Login Successfully", "accessToken": token, "expiresIn": "10 min"});
           }
           else {
-            res.status(400).send({"message": "Something Wrong"});
+            res.status(401).send({"message": "Invalid Username or Password"});
           }
         });
       }
