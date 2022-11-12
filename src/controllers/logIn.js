@@ -26,7 +26,9 @@ const logIn = async (req, res) => {
             const token = jwt.sign({name: user.username},"secretkeyxd", {
               expiresIn: "10m",
             });
-            res.status(200).send({"message": "Login Successfully", "accessToken": token, "expiresIn": "10 min"});
+            console.log(vresult);
+            vresult.push({"message": "Login Successfully","accessToken": token, "expiresIn": "10 min"})
+            res.status(200).send(vresult);
           }
           else {
             res.status(401).send({"message": "Invalid Username or Password"});
